@@ -22,7 +22,7 @@ public class ProductPageTest extends BaseTest {
                 .clickOnCatalogClassifierLink("Электроника")
                 .clickOnCatalogClassifierItem(" Аудиотехника ")
                 .clickOnProductLink("Наушники")
-                .closeAd()
+//                .closeAd()
                 .getParentProducts();
 
         ElementsCollection parentProductsTitles = productPage.getParentProductsTitles();
