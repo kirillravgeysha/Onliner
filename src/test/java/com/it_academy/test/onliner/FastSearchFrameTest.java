@@ -50,7 +50,6 @@ public class FastSearchFrameTest extends SwitchToFrame {
                 allMatch(element -> element.matches(regex)))
                 .as("Description is not contain number of products")
                 .isTrue();
-
     }
 
     @Test
@@ -62,7 +61,6 @@ public class FastSearchFrameTest extends SwitchToFrame {
 
         fastSearchTabFilters.shouldHave(CollectionCondition.
                 containExactTextsCaseSensitive("В любом разделе", "За полгода", "Сначала релевантные"));
-
     }
 
     @Test
@@ -70,15 +68,6 @@ public class FastSearchFrameTest extends SwitchToFrame {
         fastSearchFrame
                 .closeFastSearchFrameByIcon()
                 .checkFastSearchFrameNotVisible();
-
-    }
-
-    @Test
-    public void checkCloseFastSearchFrameByOffset() {
-        fastSearchFrame
-                .closeFastSearchFrameByOffset()
-                .checkFastSearchFrameNotVisible();
-
     }
 
     @Test

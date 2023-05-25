@@ -20,7 +20,7 @@ public class ProductPageTest extends BaseTest {
         ElementsCollection parentProducts = homePage
                 .clickOnCatalogLink("Каталог")
                 .clickOnCatalogClassifierLink("Электроника")
-                .clickOnCatalogClassifierItem(" Аудиотехника ")
+                .clickOnCatalogClassifierItem("Аудиотехника")
                 .clickOnProductLink("Наушники")
 //                .closeAd()
                 .getParentProducts();

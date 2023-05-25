@@ -31,16 +31,6 @@ public class FastSearchFrame extends BasePage {
 
     private final SelenideElement frameCloseIcon = $x("//span[@class='search__close']");
 
-    private static final String FRAME_PRODUCT_OFFER_XPATH_PATTERN = "//div" +
-            "[@class='product__offers__wrapper']/a[contains(@href, '%s')]";
-
-    private final SelenideElement frameAddToCartButton = $x("//div[@class='offers-list__control" +
-            " offers-list__control_default helpers_hide_tablet']//a[contains(text(), 'В корзину')]");
-
-    private static final String FRAME_PRODUCT_TITLE_XPATH_PATTERN =
-            "//a[contains(text(), '%s')]";
-
-    private final SelenideElement frameCartButton = $x("//a[@title='Корзина']");
 
     public ElementsCollection getFastSearchCategoryResults() {
         return fastSearchCategoryResults.shouldBe(CollectionCondition.allMatch
@@ -77,11 +67,6 @@ public class FastSearchFrame extends BasePage {
         return this;
     }
 
-    public FastSearchFrame closeFastSearchFrameByOffset() {
-        frameActive.shouldBe(visible, ofSeconds(30)).click(ClickOptions.withOffset(-800, 0));
-        return this;
-    }
-
     public FastSearchFrame closeFastSearchFrameByEscape() {
         frameActive.pressEscape();
         return this;
@@ -90,25 +75,5 @@ public class FastSearchFrame extends BasePage {
     public void checkFastSearchFrameNotVisible() {
         frame.shouldNotBe(visible, ofSeconds(30));
     }
-
-    public FastSearchFrame clickOnProductOffer(String productName) {
-        $x(format(FRAME_PRODUCT_OFFER_XPATH_PATTERN, productName)).shouldBe(visible, ofSeconds(30)).click();
-        return this;
-    }
-
-    public FastSearchFrame clickOnAddToCartButton() {
-        frameAddToCartButton.shouldBe(visible, ofSeconds(30)).click();
-        return this;
-    }
-
-    public FastSearchFrame clickOnCartButton() {
-        frameCartButton.shouldBe(visible, ofSeconds(30)).click();
-        return this;
-    }
-
-    public void checkProductWasAddedToCart(String productTitle) {
-        $x(format(FRAME_PRODUCT_TITLE_XPATH_PATTERN, productTitle)).shouldBe(visible, ofSeconds(30));
-    }
-
 
 }

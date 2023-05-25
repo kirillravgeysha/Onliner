@@ -6,8 +6,6 @@ import com.it_academy.navigation.OnlinerNavigation;
 import com.it_academy.pageobject.onliner.CatalogPage;
 import com.it_academy.pageobject.onliner.HomePage;
 import com.it_academy.test.BaseTest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -16,8 +14,6 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class CatalogPageTest extends BaseTest {
-
-    protected static final Logger LOG = LoggerFactory.getLogger(CatalogPageTest.class);
 
     @BeforeMethod
     public void navigateToOnlinerCatalog() {

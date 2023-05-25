@@ -27,7 +27,7 @@ public class CatalogPage extends BasePage {
             "[@class='catalog-navigation-list__aside-list']/div/div[@class='catalog-navigation-list__aside-title']");
 
     private static final String CATALOG_CLASSIFIER_ITEM_XPATH_PATTERN =
-            "//div[contains(@class, 'aside-list')]//div[contains(@class, 'aside-title') and text() = '%s']";
+            "//div[contains(@class, 'aside-list')]//div[contains(@class, 'aside-title') and contains(text(), '%s')]";
 
     private final ElementsCollection catalogProducts = $$x("//div[contains" +
             "(@class, 'aside-item_active')]//div[contains(@class, 'dropdown-list')]/a[contains(@href, 'onliner')]");

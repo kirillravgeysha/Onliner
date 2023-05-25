@@ -14,6 +14,8 @@ public class BrowserOptionsFactory {
             options = BrowserOptions.getEdgeOptions();
         else if (browser.equals("firefox"))
             options = BrowserOptions.getFirefoxOptions();
+        else if (browser.equals("safari"))
+            options = BrowserOptions.getSafariOptions();
         return options;
     }
 }
