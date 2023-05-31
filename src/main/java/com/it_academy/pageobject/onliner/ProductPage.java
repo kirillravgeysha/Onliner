@@ -74,6 +74,9 @@ public class ProductPage extends BasePage {
     private static final String PRODUCT_FILTER_XPATH_PATTERN =
             "//ul//label[@class='schema-filter__checkbox-item']//span[text()='%s']";
 
+    private SelenideElement manufacturerFilterApple = $x( "//ul" +
+            "//label[@class='schema-filter__checkbox-item']//span[text()='Apple']");
+
     private final SelenideElement priceDropdownFilter = $x("//a[@class='schema-order__link']");
 
     private static final String PRICE_DROPDOWN_FILTER_ITEM_XPATH_PATTERN =
@@ -156,7 +159,7 @@ public class ProductPage extends BasePage {
     }
 
     public ProductPage clickOnProductFilter(String manufacturer) {
-        $x(format(PRODUCT_FILTER_XPATH_PATTERN, manufacturer)).shouldBe(visible, ofSeconds(30)).click();
+        $x(format(PRODUCT_FILTER_XPATH_PATTERN, manufacturer)).scrollTo().shouldBe(visible, ofSeconds(30)).click();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
