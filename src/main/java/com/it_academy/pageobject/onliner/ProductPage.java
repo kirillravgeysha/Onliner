@@ -5,10 +5,13 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.it_academy.pageobject.BasePage;
 
+import java.util.Random;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
+import static java.lang.String.format;
 import static java.time.Duration.ofSeconds;
 
 
@@ -21,6 +24,8 @@ public class ProductPage extends BasePage {
 
     private final ElementsCollection parentProductsTitle = $$x("//div" +
             "[@class='schema-product__title']//span[contains(@data-bind, 'product')]");
+
+    //div[@class='schema-product__title']//span[contains(@data-bind, 'product')]
 
     private final ElementsCollection childProductsTitle = $$x("//div" +
             "[@class='schema-product__title']//span[contains(@data-bind, 'children')]");
@@ -57,7 +62,24 @@ public class ProductPage extends BasePage {
             "[@class='schema-product__group']//div[@class='schema-product__compare']/div" +
             "[contains(@data-bind, 'data: children')]");
 
+    private final SelenideElement compareButton = $x("//a" +
+            "[@class='compare-button__sub compare-button__sub_main']");
+
     private final SelenideElement closeAdButton = $x("//span[contains(text(), 'Супер, спасибо')]");
+
+    private final SelenideElement hideEqualCheckbox = $x("//input[@id='product-table__hide-equal']");
+
+    private final ElementsCollection productTitlesCompare = $$x("//tr" +
+            "[@class='product-table__row product-table__row_header product-table__row_top']//span" +
+            "[@class='product-summary__caption']");
+
+    private static final String PRODUCT_FILTER_XPATH_PATTERN =
+            "//ul//label[@class='schema-filter__checkbox-item']//span[text()='%s']";
+
+    private final SelenideElement priceDropdownFilter = $x("//a[@class='schema-order__link']");
+
+    private static final String PRICE_DROPDOWN_FILTER_ITEM_XPATH_PATTERN =
+            "//div[@class='schema-order__popover']//span[text()='%s']";
 
     public ElementsCollection getParentProducts() {
         return parentProducts.shouldHave(sizeGreaterThan(0), ofSeconds(30));
@@ -110,6 +132,53 @@ public class ProductPage extends BasePage {
 
     public ProductPage closeAd() {
         closeAdButton.shouldBe(visible, ofSeconds(30)).click();
+        return this;
+    }
+
+    public ProductPage clickOnRandomProductCheckBox(){
+        Random random = new Random();
+        parentProductsCheckbox.shouldHave(CollectionCondition.sizeGreaterThan(0), ofSeconds(30))
+                .get(random.nextInt(parentProductsCheckbox.size()))
+                .click();
+        return this;
+    }
+
+    public ProductPage clickOnCompareButton(){
+        compareButton.shouldBe(visible, ofSeconds(30)).click();
+        return this;
+    }
+
+    public ProductPage clickOnHideEqualCheckbox(){
+        hideEqualCheckbox.shouldBe(visible, ofSeconds(30)).click();
+        return this;
+    }
+
+    public ElementsCollection getProductTitlesToCompare(){
+      return  productTitlesCompare.shouldHave(sizeGreaterThan(0), ofSeconds(30));
+    }
+
+    public ProductPage clickOnProductFilter(String manufacturer) {
+        $x(format(PRODUCT_FILTER_XPATH_PATTERN, manufacturer)).shouldBe(visible, ofSeconds(30)).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
+    public ProductPage clickOnDropdownFilter(){
+        priceDropdownFilter.shouldBe(visible, ofSeconds(30)).click();
+        return this;
+    }
+
+    public ProductPage clickOnPriceDropdownFilterItem(String item){
+        $x(format(PRICE_DROPDOWN_FILTER_ITEM_XPATH_PATTERN, item)).shouldBe(visible, ofSeconds(30)).click();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
