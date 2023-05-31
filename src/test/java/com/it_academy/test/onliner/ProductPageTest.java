@@ -92,7 +92,7 @@ public class ProductPageTest extends BaseTest {
     public void checkManufacturerProductFilter() {
 
         ElementsCollection filteredProductTitles = productPage
-                .closeAd()
+//                .closeAd()
                 .clickOnProductFilter("Apple")
                 .getParentProductsTitles();
         filteredProductTitles.stream().map(el -> el.getText()).forEach(System.out::println);

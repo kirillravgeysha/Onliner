@@ -25,8 +25,6 @@ public class ProductPage extends BasePage {
     private final ElementsCollection parentProductsTitle = $$x("//div" +
             "[@class='schema-product__title']//span[contains(@data-bind, 'product')]");
 
-    //div[@class='schema-product__title']//span[contains(@data-bind, 'product')]
-
     private final ElementsCollection childProductsTitle = $$x("//div" +
             "[@class='schema-product__title']//span[contains(@data-bind, 'children')]");
 
